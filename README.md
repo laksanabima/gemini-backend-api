@@ -72,21 +72,21 @@ Here’s how a typical request is handled, using `POST /generate-text` as an exa
     *   **Endpoint**: `/generate-text`
     *   **Body**: `{ "prompt": "Your text prompt" }`
 
-*   **Generate from Image**
+*   **Generate Detail from Image**
     *   **Method**: `POST`
     *   **Endpoint**: `/generate-from-image`
     *   **Form-Data**:
         *   `prompt` (text): Your text prompt.
         *   `image` (file): The image file.
 
-*   **Generate from Document**
+*   **Generate Summary from Document**
     *   **Method**: `POST`
     *   **Endpoint**: `/generate-from-document`
     *   **Form-Data**:
         *   `prompt` (text, optional): Your text prompt.
         *   `document` (file): The document file.
 
-*   **Generate from Audio**
+*   **Generate Transcribe from Audio**
     *   **Method**: `POST`
     *   **Endpoint**: `/generate-from-audio`
     *   **Form-Data**:
