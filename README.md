@@ -92,5 +92,3 @@ Here’s how a typical request is handled, using `POST /generate-text` as an exa
     *   **Form-Data**:
         *   `prompt` (text, optional): Your text prompt.
         *   `audio` (file): The audio file.
-
-![alt text](img/image.png)
