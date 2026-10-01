@@ -6,9 +6,9 @@ import {
 } from '../services/geminiService.js';
 
 async function generateText(req, res) {
-  const { prompt } = req.body;
+  const { prompt, system } = req.body;
   try {
-    const result = await generateTextService(prompt);
+    const result = await generateTextService(prompt, system);
     res.status(200).json({ result });
   } catch (e) {
     console.log(e);
@@ -17,10 +17,10 @@ async function generateText(req, res) {
 }
 
 async function generateFromImage(req, res) {
-  const { prompt } = req.body;
+  const { prompt, system } = req.body;
   const image = req.file;
   try {
-    const result = await generateFromImageService(prompt, image);
+    const result = await generateFromImageService(prompt, image, system);
     res.status(200).json({ result });
   } catch (e) {
     console.log(e);
@@ -29,10 +29,10 @@ async function generateFromImage(req, res) {
 }
 
 async function generateFromDocument(req, res) {
-    const { prompt } = req.body;
+    const { prompt, system } = req.body;
     const document = req.file;
     try {
-        const result = await generateFromDocumentService(prompt, document);
+        const result = await generateFromDocumentService(prompt, document, system);
         res.status(200).json({ result });
     } catch (e) {
         console.log(e);
@@ -41,10 +41,10 @@ async function generateFromDocument(req, res) {
 }
 
 async function generateFromAudio(req, res) {
-    const { prompt } = req.body;
+    const { prompt, system } = req.body;
     const audio = req.file;
     try {
-        const result = await generateFromAudioService(prompt, audio);
+        const result = await generateFromAudioService(prompt, audio, system);
         res.status(200).json({ result });
     } catch (e) {
         console.log(e);
