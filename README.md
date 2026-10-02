@@ -103,6 +103,24 @@ With the instruction above, the example `prompt` is out of context, so the respo
 
 On the multipart endpoints (`/generate-from-image`, `/generate-from-document`, `/generate-from-audio`), `system` is sent as a regular form-data text field alongside the file.
 
+## File Uploads
+
+The image, document, and audio endpoints accept `multipart/form-data`. Files use multer's **memory storage**, so nothing is written to disk: the buffer is base64-encoded and sent to Gemini as `inlineData` in the same request.
+
+*   **Max file size**: 20MB, matching `client_max_body_size 20M` in the nginx config and Gemini's inline data limit. Larger files require the Gemini Files API instead.
+*   **MIME validation**: each endpoint only accepts its own set of MIME types (see the endpoints below). Other types are rejected with `400`.
+*   **Missing file**: `400` with a message naming the required field.
+*   **File too large**: `413 File terlalu besar (maks 20MB)`.
+
+### Testing with Postman
+
+1.  Method `POST`, enter the endpoint URL.
+2.  In **Headers**, add `x-api-key: your_secret_key_here`.
+3.  In **Body**, choose **form-data**. Add a row per field and set the row **Type** correctly: `prompt` and `system` as **Text**, the file field (`image` / `document` / `audio`) as **File**.
+4.  Do not set the `Content-Type` header manually; Postman generates the multipart boundary itself.
+
+The field names must match exactly (`image`, `document`, `audio`); otherwise `req.file` is `undefined`.
+
 ## API Endpoints
 
 *   **Generate Text**
@@ -117,7 +135,7 @@ On the multipart endpoints (`/generate-from-image`, `/generate-from-document`, `
     *   **Form-Data**:
         *   `prompt` (text): Your text prompt.
         *   `system` (text, optional): System instruction that constrains the model's role and behaviour.
-        *   `image` (file): The image file.
+        *   `image` (file, required): The image file. Allowed: `image/jpeg`, `image/png`, `image/webp`, `image/heic`, `image/heif`.
     *   **Headers**: `x-api-key` (required)
 
 *   **Generate Summary from Document**
@@ -126,7 +144,7 @@ On the multipart endpoints (`/generate-from-image`, `/generate-from-document`, `
     *   **Form-Data**:
         *   `prompt` (text, optional): Your text prompt.
         *   `system` (text, optional): System instruction that constrains the model's role and behaviour.
-        *   `document` (file): The document file.
+        *   `document` (file, required): The document file. Allowed: `application/pdf`, `text/plain`.
     *   **Headers**: `x-api-key` (required)
 
 *   **Generate Transcribe from Audio**
@@ -135,7 +153,7 @@ On the multipart endpoints (`/generate-from-image`, `/generate-from-document`, `
     *   **Form-Data**:
         *   `prompt` (text, optional): Your text prompt.
         *   `system` (text, optional): System instruction that constrains the model's role and behaviour.
-        *   `audio` (file): The audio file.
+        *   `audio` (file, required): The audio file. Allowed: `audio/mpeg`, `audio/mp3`, `audio/wav`, `audio/aiff`, `audio/aac`, `audio/ogg`, `audio/flac`.
     *   **Headers**: `x-api-key` (required)
      
 ![alt text](img/image.png)

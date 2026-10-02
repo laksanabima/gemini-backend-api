@@ -19,6 +19,9 @@ async function generateText(req, res) {
 async function generateFromImage(req, res) {
   const { prompt, system } = req.body;
   const image = req.file;
+  if (!image) {
+    return res.status(400).json({ message: 'File "image" wajib diunggah' });
+  }
   try {
     const result = await generateFromImageService(prompt, image, system);
     res.status(200).json({ result });
@@ -31,6 +34,9 @@ async function generateFromImage(req, res) {
 async function generateFromDocument(req, res) {
     const { prompt, system } = req.body;
     const document = req.file;
+    if (!document) {
+        return res.status(400).json({ message: 'File "document" wajib diunggah' });
+    }
     try {
         const result = await generateFromDocumentService(prompt, document, system);
         res.status(200).json({ result });
@@ -43,6 +49,9 @@ async function generateFromDocument(req, res) {
 async function generateFromAudio(req, res) {
     const { prompt, system } = req.body;
     const audio = req.file;
+    if (!audio) {
+        return res.status(400).json({ message: 'File "audio" wajib diunggah' });
+    }
     try {
         const result = await generateFromAudioService(prompt, audio, system);
         res.status(200).json({ result });

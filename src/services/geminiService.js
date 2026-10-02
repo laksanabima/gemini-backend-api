@@ -21,7 +21,7 @@ async function generateFromImage(prompt, image, system) {
   const response = await ai.models.generateContent({
     model: GEMINI_MODEL,
     contents: [
-      { text: prompt, type: 'text' },
+      { text: prompt ?? 'Tolong jelaskan gambar berikut ini', type: 'text' },
       { inlineData: { data: image.buffer.toString('base64'), mimeType: image.mimetype } },
     ],
     config: buildConfig(system),
