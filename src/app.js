@@ -1,10 +1,16 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
 import multer from 'multer';
 import { port } from './config/index.js';
 import { apiKeyAuth } from './middlewares/apiKey.js';
 import generateRoutes from './routes/generate.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+
+// Halaman publik (homepage) — didaftarkan sebelum auth agar tidak kena 401
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use(express.json());
 app.use(apiKeyAuth);

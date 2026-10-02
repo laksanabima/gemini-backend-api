@@ -24,6 +24,8 @@ gemini-flash-api/
 │   ├── services/
 │   │   └── geminiService.js # Gemini AI interaction logic
 │   └── app.js            # Main Express application setup
+├── public/
+│   └── index.html        # Public homepage (Tailwind CSS)
 ├── .env                  # Environment variables (API key)
 ├── index.js              # Application entry point
 ├── package.json
@@ -38,7 +40,7 @@ gemini-flash-api/
 *   **`src/controllers/`**: Acts as the bridge between the routes and the services. `generateController.js` contains the functions that handle incoming HTTP requests, call the appropriate service, and then formulate and send the HTTP response.
 *   **`src/middlewares/`**: Holds request middleware. `apiKey.js` verifies the `x-api-key` header before a request reaches any endpoint.
 *   **`src/routes/`**: Defines the API's endpoints. `generate.js` maps the URL paths (e.g., `/generate-text`) to the corresponding controller functions.
-*   **`src/app.js`**: The heart of the application. It initializes the Express server, sets up middleware (like `express.json()`), and connects the defined routes.
+*   **`src/app.js`**: The heart of the application. It initializes the Express server, serves the public homepage from `public/`, sets up middleware (like `express.json()` and API key auth), and connects the defined routes.
 *   **`index.js`**: The main entry point for starting the application. It simply imports and runs `src/app.js`.
 
 ## Application Flow
@@ -68,6 +70,10 @@ Here’s how a typical request is handled, using `POST /generate-text` as an exa
     node index.js
     ```
     The server will start, and you'll see a message like: `Server ready on http://localhost:8089`.
+
+## Homepage
+
+Opening the base URL (`GET /`) serves `public/index.html`, a public landing page styled with Tailwind CSS that documents the service and its endpoints. It is registered as static content **before** the API key middleware, so it does not require the `x-api-key` header. All API endpoints remain protected.
 
 ## Authentication
 
