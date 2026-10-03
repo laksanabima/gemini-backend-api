@@ -104,7 +104,7 @@
   <div class="pointer-events-none fixed inset-x-4 top-2 flex justify-between text-[9px] font-mono text-slate-600 uppercase tracking-widest z-40 hidden md:flex">
     <span>[ SPECIFICATION DOC // MANUAL-2026 ]</span>
     <span>SYS.REF: RSUD-BREBES-GENAI-API</span>
-    <span>CONFIDENTIAL / INTERNAL USE</span>
+    <span>INTERNAL USE</span>
   </div>
 
   <div class="relative mx-auto max-w-6xl px-4 sm:px-6 pb-24 pt-8 md:pt-12">
@@ -168,7 +168,7 @@
             <span>SPECIFICATION</span>
             <span class="text-retro-cyan">REST / JSON</span>
           </div>
-          <div class="flex justify-between"><span>BASE PATH:</span> <span class="text-slate-300">/api/v1</span></div>
+          <div class="flex justify-between"><span>BASE PATH:</span> <span class="text-slate-300">/generate-[action]</span></div>
           <div class="flex justify-between"><span>MODALITIES:</span> <span class="text-slate-300">4 TYPES</span></div>
           <div class="flex justify-between"><span>MAX PAYLOAD:</span> <span class="text-slate-300">20 MB</span></div>
           <div class="flex justify-between"><span>AUTH:</span> <span class="text-retro-amber">HEADER KEY</span></div>
@@ -193,7 +193,7 @@
           <p class="mt-1 text-sm text-slate-300 leading-relaxed">
             Semua endpoint API wajib menyertakan header
             <code class="bg-slate-900 border border-slate-700 px-2 py-0.5 font-mono text-xs text-retro-amber">x-api-key</code>
-            yang valid. Permintaan tanpa header tersebut akan menerima respons
+            yang valid. <br />Permintaan tanpa header tersebut akan menerima respons
             <code class="bg-rose-950/80 border border-rose-800 px-2 py-0.5 font-mono text-xs text-rose-300">401 Unauthorized</code>.
           </p>
 
@@ -380,7 +380,7 @@
           <thead class="bg-slate-900 text-slate-400 uppercase border-b border-slate-800">
             <tr>
               <th class="px-6 py-3 font-bold text-retro-cyan w-28">[ CODE ]</th>
-              <th class="px-6 py-3 font-bold">[ KETERANGAN / CAUSE ]</th>
+              <th class="px-6 py-3 font-bold">[ KETERANGAN ]</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-800/80 text-slate-300">
@@ -414,7 +414,7 @@
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <p>© <span id="year">2026</span> RSUD BREBES — LAYANAN GENERATIVE AI.</p>
-          <p class="mt-1 text-[11px] text-slate-600">ALL RIGHTS RESERVED // INTERNAL HOSPITAL API SYSTEM</p>
+          <p class="mt-1 text-[11px] text-slate-600">ALL RIGHTS RESERVED BY IT DIVISION RSUD BREBES</p>
         </div>
         <p class="max-w-md text-right text-[11px] leading-relaxed text-slate-600">
           Dikembangkan untuk kebutuhan internal rumah sakit. Gunakan sesuai kebijakan privasi dan keamanan data pasien.
